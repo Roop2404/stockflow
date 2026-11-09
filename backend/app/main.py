@@ -6,6 +6,7 @@ from sqlalchemy.exc import SQLAlchemyError
 from app.core.config import get_settings
 from app.database.session import engine
 from app.routers.auth import router as auth_router
+from app.routers.inventory import router as inventory_router
 
 settings = get_settings()
 app = FastAPI(title=settings.app_name, version="0.1.0")
@@ -17,6 +18,7 @@ app.add_middleware(
     allow_headers=["Authorization", "Content-Type", "X-CSRF-Token", "X-StockFlow-BFF-Secret"],
 )
 app.include_router(auth_router)
+app.include_router(inventory_router)
 
 
 @app.get("/")

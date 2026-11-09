@@ -36,4 +36,10 @@ Registration creates an organization, its owner, default settings, and initial r
 
 Production cookies use the `__Host-stockflow_*` names, Secure, HttpOnly, SameSite=Lax, Path=/, and no Domain. Local HTTP uses separate `stockflow_dev_*` cookie names with Secure disabled only for development. Do not weaken production settings.
 
-The frontend includes `/register`, `/login`, and protected placeholder routes `/dashboard` and `/settings`. Product and inventory functionality is out of scope.
+The frontend includes `/register` and `/login`; the protected workspace pages are described below.
+
+## Phase 3 inventory
+
+Authenticated inventory endpoints are available through the Next.js same-origin BFF under `/api/app/*`; FastAPI exposes organization-scoped routes under `/api/products`, `/api/dashboard/summary`, and `/api/organization/settings`. Product SKU uniqueness and numeric constraints are enforced by the existing PostgreSQL schema, so Phase 3 does not add a migration. Product and dashboard queries take the organization only from the authenticated database user.
+
+The protected frontend includes the organization dashboard, product list/create/detail pages, inventory quantity updates, and the organization default low-stock setting. Products with no individual threshold use the organization default for dashboard low-stock calculations.
