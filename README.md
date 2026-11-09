@@ -42,4 +42,4 @@ The frontend includes `/register` and `/login`; the protected workspace pages ar
 
 Authenticated inventory endpoints are available through the Next.js same-origin BFF under `/api/app/*`; FastAPI exposes organization-scoped routes under `/api/products`, `/api/dashboard/summary`, and `/api/organization/settings`. Product SKU uniqueness and numeric constraints are enforced by the existing PostgreSQL schema, so Phase 3 does not add a migration. Product and dashboard queries take the organization only from the authenticated database user.
 
-The protected frontend includes the organization dashboard, product list/create/detail pages, inventory quantity updates, and the organization default low-stock setting. Products with no individual threshold use the organization default for dashboard low-stock calculations.
+The protected frontend includes the organization dashboard, product list/create/detail pages, inventory quantity updates, and the organization default low-stock setting. Products with no individual threshold use the organization default for dashboard low-stock calculations .
